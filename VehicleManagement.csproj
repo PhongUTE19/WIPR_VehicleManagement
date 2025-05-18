@@ -63,6 +63,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Job\EditJobForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\EditJobForm.Designer.cs">
+      <DependentUpon>EditJobForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Job\AddJobForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\AddJobForm.Designer.cs">
+      <DependentUpon>AddJobForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Job\ListJobForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\ListJobForm.Designer.cs">
+      <DependentUpon>ListJobForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\EditStaffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Staff\EditStaffForm.Designer.cs">
+      <DependentUpon>EditStaffForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\AddStaffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Staff\AddStaffForm.Designer.cs">
+      <DependentUpon>AddStaffForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\ListStaffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Staff\ListStaffForm.Designer.cs">
+      <DependentUpon>ListStaffForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vehicle\EditVehicleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,7 +111,7 @@
     <Compile Include="Vehicle\AddVehicleForm.Designer.cs">
       <DependentUpon>AddVehicleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Query\Account.cs" />
+    <Compile Include="Account\Account.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="Account\ResetPasswordForm.cs">
       <SubType>Form</SubType>
@@ -113,14 +149,13 @@
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\SecurityHelper.cs" />
-    <Compile Include="Query\MyDB.cs" />
+    <Compile Include="MyDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\Contract.cs" />
-    <Compile Include="Query\Job.cs" />
-    <Compile Include="Query\Staff.cs" />
-    <Compile Include="Query\Customer.cs" />
-    <Compile Include="Query\Vehicle.cs" />
+    <Compile Include="Job\Job.cs" />
+    <Compile Include="Staff\Staff.cs" />
+    <Compile Include="Vehicle\Vehicle.cs" />
     <Compile Include="Vehicle\ListVehicleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +170,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Account\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\EditJobForm.resx">
+      <DependentUpon>EditJobForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\AddJobForm.resx">
+      <DependentUpon>AddJobForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\ListJobForm.resx">
+      <DependentUpon>ListJobForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Staff\EditStaffForm.resx">
+      <DependentUpon>EditStaffForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Staff\AddStaffForm.resx">
+      <DependentUpon>AddStaffForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Staff\ListStaffForm.resx">
+      <DependentUpon>ListStaffForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vehicle\EditVehicleForm.resx">
       <DependentUpon>EditVehicleForm.cs</DependentUpon>
@@ -228,5 +281,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

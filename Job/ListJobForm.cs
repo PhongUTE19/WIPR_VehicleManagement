@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace VehicleManagement
 {
-    public partial class ListStaffForm : Form
+    public partial class ListJobForm : Form
     {
-        private Vehicle vehicle = new Vehicle();
+        private Job job = new Job();
 
-        public ListStaffForm()
+        public ListJobForm()
         {
             InitializeComponent();
         }
 
-        private void ListStaffForm_Load(object sender, EventArgs e)
+        private void ListJobForm_Load(object sender, EventArgs e)
         {
             SetRefresh();
         }
 
         private void tsmiAdd_Click(object sender, EventArgs e)
         {
-            AddStaffForm form = new AddStaffForm();
+            AddJobForm form = new AddJobForm();
             form.ShowDialog();
             SetRefresh();
         }
@@ -32,23 +31,11 @@ namespace VehicleManagement
             if (row == null || row.Index == -1)
                 return;
 
-            EditStaffForm form = new EditStaffForm();
+            EditJobForm form = new EditJobForm();
             string id = row.Cells["id"].Value.ToString();
-            string firstName = row.Cells["firstName"].Value.ToString();
-            string lastName = row.Cells["lastName"].Value.ToString();
-            DateTime birthdate = (DateTime)row.Cells["birthdate"].Value;
-            string gender = row.Cells["gender"].Value.ToString();
-            string phone = row.Cells["phone"].Value.ToString();
-            string address = row.Cells["address"].Value.ToString();
-            string email = row.Cells["email"].Value.ToString();
-            string role = row.Cells["role"].Value.ToString();
-            string job = row.Cells["job"].Value.ToString();
-            Image picture;
-            if (row.Cells["picture"].Value != DBNull.Value)
-                picture = Helper.byteArrayToImage((byte[])row.Cells["picture"].Value);
-            else
-                picture = null;
-            EditStaffDTO dto = new EditStaffDTO(id, firstName, lastName, birthdate, gender, phone, address, email, picture, role, job);
+            string name = row.Cells["name"].Value.ToString();
+            string description = row.Cells["description"].Value.ToString();
+            EditJobDTO dto = new EditJobDTO(id, name, description);
             form.SetData(dto);
             form.ShowDialog();
             SetRefresh();
@@ -64,10 +51,10 @@ namespace VehicleManagement
             if (Helper.IsFieldEmpty(vehicleId))
                 return;
 
-            if (vehicle.Delete(vehicleId))
-                MessageBox.Show(Const.Message.Staff.DELETE_SUCCESS, Const.Title.SUCCESS, MessageBoxButtons.OK);
+            if (job.Delete(vehicleId))
+                MessageBox.Show(Const.Message.Job.DELETE_SUCCESS, Const.Title.SUCCESS, MessageBoxButtons.OK);
             else
-                MessageBox.Show(Const.Message.Staff.DELETE_FAIL, Const.Title.FAIL, MessageBoxButtons.OK);
+                MessageBox.Show(Const.Message.Job.DELETE_FAIL, Const.Title.FAIL, MessageBoxButtons.OK);
 
             SetRefresh();
         }
@@ -87,7 +74,7 @@ namespace VehicleManagement
         private void SetRefresh()
         {
             SqlCommand command = new SqlCommand(@"
-                SELECT * FROM [Staff]");
+                SELECT * FROM [Job]");
             FormHelper.DgvSetup(dgv, command);
             txtSearch.Text = "";
         }

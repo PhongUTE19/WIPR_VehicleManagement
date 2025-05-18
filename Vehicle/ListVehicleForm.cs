@@ -23,7 +23,7 @@ namespace VehicleManagement
             InitializeComponent();
         }
 
-        private void ManageVehicleForm_Load(object sender, EventArgs e)
+        private void ListVehicleForm_Load(object sender, EventArgs e)
         {
             SetRefresh();
         }
@@ -80,6 +80,11 @@ namespace VehicleManagement
         private void tsmiRefresh_Click(object sender, EventArgs e)
         {
             SetRefresh();
+        }
+
+        private void tsmiPrint_Click(object sender, EventArgs e)
+        {
+            MsHelper.PrintWord(dgv, "Vehicle");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

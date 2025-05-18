@@ -13,7 +13,7 @@ namespace VehicleManagement
             InitializeComponent();
         }
 
-        private void AddVehicleForm_Load(object sender, EventArgs e)
+        private void AddStaffForm_Load(object sender, EventArgs e)
         {
             FormHelper.CboSetup(cboGender, new string[] { "Male", "Female" });
             FormHelper.CboSetup(cboRole, new string[] { "Mechanic", "Washer", "ParkingAttendant" });

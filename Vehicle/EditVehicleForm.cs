@@ -13,7 +13,7 @@ namespace VehicleManagement
             InitializeComponent();
         }
 
-        private void AddVehicleForm_Load(object sender, EventArgs e)
+        private void EditVehicleForm_Load(object sender, EventArgs e)
         {
             FormHelper.CboSetup(cboType, new string[] { "Bike", "Motorbike", "Car" });
             FormHelper.CboSetup(cboSubscription, new string[] { "Hour", "Day", "Week", "Month" });

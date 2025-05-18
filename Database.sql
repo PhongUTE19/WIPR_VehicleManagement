@@ -25,7 +25,9 @@ GO
 
 CREATE TABLE [dbo].[Job]
 (
-    [id] INT NOT NULL,
+    [id] INT NOT NULL PRIMARY KEY,
+    [name] VARCHAR(10) NULL,
+    [description] TEXT NULL,
 );
 
 CREATE TABLE [dbo].[Staff]

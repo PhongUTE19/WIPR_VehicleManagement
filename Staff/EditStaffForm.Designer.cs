@@ -312,7 +312,7 @@ namespace VehicleManagement
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AddStaffForm";
             this.Text = "AddStaffForm";
-            this.Load += new System.EventHandler(this.AddVehicleForm_Load);
+            this.Load += new System.EventHandler(this.EditStaffForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,7 +1,7 @@
 ﻿
 namespace VehicleManagement
 {
-    partial class ListVehicleForm
+    partial class ListJobForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,6 @@ namespace VehicleManagement
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.tsmiPrint = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -92,8 +91,7 @@ namespace VehicleManagement
             this.tsmiAdd,
             this.tsmiUpdate,
             this.tsmiDelete,
-            this.tsmiRefresh,
-            this.tsmiPrint});
+            this.tsmiRefresh});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(930, 28);
@@ -138,14 +136,7 @@ namespace VehicleManagement
             this.lblTotal.TabIndex = 137;
             this.lblTotal.Text = "Total:";
             // 
-            // tsmiPrint
-            // 
-            this.tsmiPrint.Name = "tsmiPrint";
-            this.tsmiPrint.Size = new System.Drawing.Size(53, 24);
-            this.tsmiPrint.Text = "Print";
-            this.tsmiPrint.Click += new System.EventHandler(this.tsmiPrint_Click);
-            // 
-            // ListVehicleForm
+            // ListJobForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -159,9 +150,9 @@ namespace VehicleManagement
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "ListVehicleForm";
-            this.Text = "ListVehicleForm";
-            this.Load += new System.EventHandler(this.ListVehicleForm_Load);
+            this.Name = "ListJobForm";
+            this.Text = "ListJobForm";
+            this.Load += new System.EventHandler(this.ListJobForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -181,6 +172,5 @@ namespace VehicleManagement
         private System.Windows.Forms.ToolStripMenuItem tsmiUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
         private System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.ToolStripMenuItem tsmiPrint;
     }
 }

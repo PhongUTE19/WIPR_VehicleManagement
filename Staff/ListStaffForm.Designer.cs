@@ -152,7 +152,7 @@ namespace VehicleManagement
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ListStaffForm";
             this.Text = "ListStaffForm";
-            this.Load += new System.EventHandler(this.ManageVehicleForm_Load);
+            this.Load += new System.EventHandler(this.ListStaffForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
