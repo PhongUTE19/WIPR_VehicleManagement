@@ -57,7 +57,7 @@ namespace VehicleManagement
                 return;
             }
 
-            if (account.Insert(SqlHelper.GetLatestId("Login"), username, password))
+            if (account.Insert(SqlHelper.GetLatestId("User"), username, password))
             {
                 txtUsername.Text = "";
                 txtPassword.Text = "";
@@ -107,7 +107,7 @@ namespace VehicleManagement
         private bool CheckUsernameExist(string username)
         {
             SqlCommand command = new SqlCommand(@"
-                SELECT * FROM [Login]
+                SELECT * FROM [User]
                 WHERE username = @username");
             command.Parameters.AddWithValue("@username", username);
             DataTable table = SqlHelper.GetTable(command);

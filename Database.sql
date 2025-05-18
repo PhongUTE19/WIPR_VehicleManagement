@@ -7,71 +7,52 @@ GO
 USE WIPR_VehicleManagement;
 GO
 
-IF OBJECT_ID('dbo.[Customer]', 'U') IS NOT NULL
-    DROP TABLE dbo.[Customer];
-GO
-
 IF OBJECT_ID('dbo.[Job]', 'U') IS NOT NULL
     DROP TABLE dbo.[Job];
-GO
-
-IF OBJECT_ID('dbo.[Login]', 'U') IS NOT NULL
-    DROP TABLE dbo.[Login];
 GO
 
 IF OBJECT_ID('dbo.[Staff]', 'U') IS NOT NULL
     DROP TABLE dbo.[Staff];
 GO
 
+IF OBJECT_ID('dbo.[User]', 'U') IS NOT NULL
+    DROP TABLE dbo.[User];
+GO
+
 IF OBJECT_ID('dbo.[Vehicle]', 'U') IS NOT NULL
     DROP TABLE dbo.[Vehicle]
 GO
-
-
-
-CREATE TABLE [dbo].[Customer]
-(
-	[id] INT NOT NULL PRIMARY KEY, 
-    [firstname] VARCHAR(10) NULL, 
-    [lastname] VARCHAR(10) NULL,
-    [birthdate] DATE NULL,
-    [gender] VARCHAR(10) NULL,
-    [phone] VARCHAR(10) NULL,
-    [address] VARCHAR(10) NULL,
-    [email] VARCHAR(10) NULL,
-    [picture] IMAGE NULL,
-)
-
 
 CREATE TABLE [dbo].[Job]
 (
     [id] INT NOT NULL,
 );
 
-CREATE TABLE [dbo].[Login]
-(
-    [id]        INT          NOT NULL,
-    [firstname] VARCHAR (10) NULL,
-    [lastname]  VARCHAR (10) NULL,
-    [username]  VARCHAR (10) NOT NULL,
-    [password]  VARCHAR (10) NOT NULL,
-    [email]     NCHAR (50)   NULL,
-);
-
 CREATE TABLE [dbo].[Staff]
 (
 	[id] INT NOT NULL PRIMARY KEY, 
-    [firstname] VARCHAR(10) NULL, 
-    [lastname] VARCHAR(10) NULL,
+    [firstName] VARCHAR(10) NULL, 
+    [lastName] VARCHAR(10) NULL,
     [birthdate] DATE NULL,
     [gender] VARCHAR(10) NULL,
     [phone] VARCHAR(10) NULL,
     [address] VARCHAR(10) NULL,
     [email] VARCHAR(10) NULL,
-    [role] VARCHAR(10) NULL,
     [picture] IMAGE NULL,
+    [role] VARCHAR(10) NULL,
+    [job] VARCHAR(10) NULL,
     CHECK ([role]='Mechanic' OR [role]='Washer' OR [role]='ParkingAttendant')
 )
+
+CREATE TABLE [dbo].[User]
+(
+    [id]        INT          NOT NULL,
+    [firstName] VARCHAR (10) NULL,
+    [lastName]  VARCHAR (10) NULL,
+    [username]  VARCHAR (10) NOT NULL,
+    [password]  VARCHAR (10) NOT NULL,
+    [email]     NCHAR (50)   NULL,
+);
 
 CREATE TABLE [dbo].[Vehicle]
 (

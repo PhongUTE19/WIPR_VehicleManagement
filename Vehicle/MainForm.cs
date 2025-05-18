@@ -18,7 +18,13 @@ namespace VehicleManagement
 
         private void tsmiStaff_Click(object sender, EventArgs e)
         {
-            //StaffVehicleForm form = new StaffVehicleForm();
+            ListStaffForm form = new ListStaffForm();
+            form.Show();
+        }
+
+        private void tsmiJob_Click(object sender, EventArgs e)
+        {
+            //ListJobForm form = new ListJobForm();
             //form.Show();
         }
     }

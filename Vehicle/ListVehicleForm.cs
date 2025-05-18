@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace VehicleManagement
@@ -44,7 +42,6 @@ namespace VehicleManagement
                 return;
 
             EditVehicleForm form = new EditVehicleForm();
-            DataGridViewRow row = dgv.CurrentRow;
             string id = row.Cells["id"].Value.ToString();
             string owner = row.Cells["owner"].Value.ToString();
             string type = row.Cells["type"].Value.ToString();
@@ -169,6 +166,5 @@ namespace VehicleManagement
             if (!table.Columns.Contains(columnName))
                 table.Columns.Add(columnName);
         }
-
     }
 }

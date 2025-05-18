@@ -67,6 +67,19 @@ namespace VehicleManagement
                 public static readonly string EDIT_SUCCESS = "Edit staff success.";
                 public static readonly string EDIT_FAIL = "Edit staff fail.";
             }
+
+            public class Job
+            {
+                public static readonly string FIRSTNAME_CONTAIN_DIGIT = "Firstname must not contain digit.";
+                public static readonly string LASTNAME_CONTAIN_DIGIT = "Lastname must not contain digit.";
+
+                public static readonly string ADD_SUCCESS = "Add job success.";
+                public static readonly string ADD_FAIL = "Add job fail.";
+                public static readonly string DELETE_SUCCESS = "Delete job success.";
+                public static readonly string DELETE_FAIL = "Delete job fail.";
+                public static readonly string EDIT_SUCCESS = "Edit job success.";
+                public static readonly string EDIT_FAIL = "Edit job fail.";
+            }
         }
     }
 }

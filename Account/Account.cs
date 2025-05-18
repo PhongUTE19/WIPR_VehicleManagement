@@ -7,7 +7,7 @@ namespace VehicleManagement
         public bool Insert(int id, string username, string password)
         {
             string query = @"
-                INSERT INTO dbo.Login (id, username, password)
+                INSERT INTO [User] (id, username, password)
                 VALUES (@id, @username, @password)";
             SqlCommand command = new SqlCommand(query);
             command.Parameters.AddWithValue("@id", id);
@@ -21,7 +21,7 @@ namespace VehicleManagement
         public bool Update(string username, string password)
         {
             string query = @"
-                UPDATE TOP(1) dbo.Login
+                UPDATE TOP(1) [User]
                 SET password = @password
                 WHERE username = @username";
             SqlCommand command = new SqlCommand(query);

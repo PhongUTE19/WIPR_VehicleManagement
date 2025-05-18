@@ -21,21 +21,21 @@ namespace VehicleManagement
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            string vehicleId = txtVehicleId.Text.Trim();
+            string id = txtVehicleId.Text.Trim();
             string owner = txtOwner.Text.Trim();
             string type = cboType.SelectedValue.ToString();
             string brand = txtBrand.Text.Trim();
             DateTime checkIn = dtpCheckIn.Value;
             string subscription = cboSubscription.SelectedValue.ToString();
             Image picture = pic.Image;
-            if (Helper.IsFieldEmpty(vehicleId) ||
+            if (Helper.IsFieldEmpty(id) ||
                 Helper.IsFieldEmpty(owner) ||
                 Helper.IsFieldEmpty(type) ||
                 Helper.IsFieldEmpty(brand) ||
                 Helper.IsFieldEmpty(picture))
                 return;
 
-            if (vehicle.Update(vehicleId, owner, type, brand, checkIn, subscription, picture))
+            if (vehicle.Update(id, owner, type, brand, checkIn, subscription, picture))
                 MessageBox.Show(Const.Message.Vehicle.EDIT_SUCCESS, Const.Title.SUCCESS, MessageBoxButtons.OK);
             else
                 MessageBox.Show(Const.Message.Vehicle.EDIT_FAIL, Const.Title.FAIL, MessageBoxButtons.OK);

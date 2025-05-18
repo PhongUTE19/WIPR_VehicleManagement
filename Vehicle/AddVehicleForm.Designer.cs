@@ -36,7 +36,7 @@ namespace VehicleManagement
             this.lblPicture = new System.Windows.Forms.Label();
             this.lblBrand = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
-            this.lblOwnerId = new System.Windows.Forms.Label();
+            this.lblOwner = new System.Windows.Forms.Label();
             this.lblVehicleId = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.cboType = new System.Windows.Forms.ComboBox();
@@ -115,15 +115,15 @@ namespace VehicleManagement
             this.lblType.TabIndex = 114;
             this.lblType.Text = "Type:";
             // 
-            // lblOwnerId
+            // lblOwner
             // 
-            this.lblOwnerId.AutoSize = true;
-            this.lblOwnerId.ForeColor = System.Drawing.Color.White;
-            this.lblOwnerId.Location = new System.Drawing.Point(25, 55);
-            this.lblOwnerId.Name = "lblOwnerId";
-            this.lblOwnerId.Size = new System.Drawing.Size(68, 17);
-            this.lblOwnerId.TabIndex = 115;
-            this.lblOwnerId.Text = "Owner Id:";
+            this.lblOwner.AutoSize = true;
+            this.lblOwner.ForeColor = System.Drawing.Color.White;
+            this.lblOwner.Location = new System.Drawing.Point(25, 55);
+            this.lblOwner.Name = "lblOwner";
+            this.lblOwner.Size = new System.Drawing.Size(53, 17);
+            this.lblOwner.TabIndex = 115;
+            this.lblOwner.Text = "Owner:";
             // 
             // lblVehicleId
             // 
@@ -219,7 +219,7 @@ namespace VehicleManagement
             this.Controls.Add(this.lblPicture);
             this.Controls.Add(this.lblBrand);
             this.Controls.Add(this.lblType);
-            this.Controls.Add(this.lblOwnerId);
+            this.Controls.Add(this.lblOwner);
             this.Controls.Add(this.lblVehicleId);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AddVehicleForm";
@@ -240,7 +240,7 @@ namespace VehicleManagement
         private System.Windows.Forms.Label lblPicture;
         private System.Windows.Forms.Label lblBrand;
         private System.Windows.Forms.Label lblType;
-        private System.Windows.Forms.Label lblOwnerId;
+        private System.Windows.Forms.Label lblOwner;
         private System.Windows.Forms.Label lblVehicleId;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.ComboBox cboType;

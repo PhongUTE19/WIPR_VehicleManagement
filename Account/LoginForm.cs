@@ -27,7 +27,7 @@ namespace VehicleManagement
                 return;
 
             SqlCommand command = new SqlCommand(@"
-                SELECT * FROM [Login]
+                SELECT * FROM [User]
                 WHERE username = @username AND password = @password");
 
             command.Parameters.Add("@username", SqlDbType.VarChar).Value = username;

@@ -4,49 +4,53 @@ using System.Drawing;
 
 namespace VehicleManagement
 {
-    public class Customer
+    public class Staff
     {
-        public bool Insert(string id, string firstname, string lastname, DateTime birthdate, string gender, string phone, string address, Image picture)
+        public bool Insert(string id, string firstName, string lastName, DateTime birthdate, string gender, string phone, string address, string email, Image picture, string role, string job)
         {
             string query = @"
-                INSERT INTO dbo.Customer (id, firstname, lastname, birthdate, gender, phone, address, picture, email)
-                VALUES (@id, @firstname, @lastname, @birthdate, @gender, @phone, @address, @picture, @email)";
+                INSERT INTO [Staff] (id, firstName, lastName, birthdate, gender, phone, address, email, picture, role, job)
+                VALUES (@id, @firstName, @lastName, @birthdate, @gender, @phone, @address, @email, @picture, @role, @job)";
             SqlCommand command = new SqlCommand(query);
             command.Parameters.AddWithValue("@id", int.Parse(id));
-            command.Parameters.AddWithValue("@firstname", firstname);
-            command.Parameters.AddWithValue("@lastname", lastname);
+            command.Parameters.AddWithValue("@firstName", firstName);
+            command.Parameters.AddWithValue("@lastName", lastName);
             command.Parameters.AddWithValue("@birthdate", birthdate);
             command.Parameters.AddWithValue("@gender", gender);
             command.Parameters.AddWithValue("@phone", phone);
             command.Parameters.AddWithValue("@address", address);
+            command.Parameters.AddWithValue("@email", email);
             command.Parameters.AddWithValue("@picture", Helper.imageToByteArray(picture));
-            command.Parameters.AddWithValue("@email", id + Const.HCMUTE_EMAIL);
+            command.Parameters.AddWithValue("@role", role);
+            command.Parameters.AddWithValue("@job", job);
             return SqlHelper.Execute(command);
         }
 
-        public bool Update(string id, string firstname, string lastname, DateTime birthdate, string gender, string phone, string address, Image picture)
+        public bool Update(string id, string firstName, string lastName, DateTime birthdate, string gender, string phone, string address, string email, Image picture, string role, string job)
         {
             string query = @"
-                UPDATE dbo.Customer
-                SET firstname = @firstname, lastname = @lastname, birthdate = @birthdate, gender = @gender, phone = @phone, address = @address, picture = @picture, email = @email
+                UPDATE [Staff]
+                SET firstName = @firstName, lastName = @lastName, birthdate = @birthdate, gender = @gender, phone = @phone, address = @address, email = @email, picture = @picture, role = @role, job = @job
                 WHERE id = @id";
             SqlCommand command = new SqlCommand(query);
             command.Parameters.AddWithValue("@id", int.Parse(id));
-            command.Parameters.AddWithValue("@firstname", firstname);
-            command.Parameters.AddWithValue("@lastname", lastname);
+            command.Parameters.AddWithValue("@firstName", firstName);
+            command.Parameters.AddWithValue("@lastName", lastName);
             command.Parameters.AddWithValue("@birthdate", birthdate);
             command.Parameters.AddWithValue("@gender", gender);
             command.Parameters.AddWithValue("@phone", phone);
             command.Parameters.AddWithValue("@address", address);
+            command.Parameters.AddWithValue("@email", email);
             command.Parameters.AddWithValue("@picture", Helper.imageToByteArray(picture));
-            command.Parameters.AddWithValue("@email", id + Const.HCMUTE_EMAIL);
+            command.Parameters.AddWithValue("@role", role);
+            command.Parameters.AddWithValue("@job", job);
             return SqlHelper.Execute(command);
         }
 
         public bool Delete(string id)
         {
             string query = @"
-                DELETE FROM dbo.Customer
+                DELETE FROM [Staff]
                 WHERE id = @id";
             SqlCommand command = new SqlCommand(query);
             command.Parameters.AddWithValue("@id", id);
