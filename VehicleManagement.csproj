@@ -136,10 +136,10 @@
     <Compile Include="Account\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vehicle\MainForm.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vehicle\MainForm.Designer.cs">
+    <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Account\RegisterForm.cs">
@@ -192,7 +192,7 @@
     <EmbeddedResource Include="Vehicle\EditVehicleForm.resx">
       <DependentUpon>EditVehicleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vehicle\MainForm.resx">
+    <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -228,6 +228,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FakeData.sql" />
     <Content Include="Database.sql" />
     <Content Include="Resources\images.png" />
   </ItemGroup>

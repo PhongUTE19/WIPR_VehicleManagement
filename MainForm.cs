@@ -24,8 +24,8 @@ namespace VehicleManagement
 
         private void tsmiJob_Click(object sender, EventArgs e)
         {
-            //ListJobForm form = new ListJobForm();
-            //form.Show();
+            ListJobForm form = new ListJobForm();
+            form.Show();
         }
     }
 }

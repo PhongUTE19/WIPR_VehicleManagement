@@ -33,18 +33,18 @@ CREATE TABLE [dbo].[Job]
 CREATE TABLE [dbo].[Staff]
 (
 	[id] INT NOT NULL PRIMARY KEY, 
-    [firstName] VARCHAR(10) NULL, 
-    [lastName] VARCHAR(10) NULL,
+    [firstName] VARCHAR(20) NULL, 
+    [lastName] VARCHAR(20) NULL,
     [birthdate] DATE NULL,
     [gender] VARCHAR(10) NULL,
-    [phone] VARCHAR(10) NULL,
-    [address] VARCHAR(10) NULL,
-    [email] VARCHAR(10) NULL,
+    [phone] VARCHAR(15) NULL,
+    [address] VARCHAR(50) NULL,
+    [email] VARCHAR(50) NULL,
     [picture] IMAGE NULL,
-    [role] VARCHAR(10) NULL,
-    [job] VARCHAR(10) NULL,
+    [role] VARCHAR(20) NULL,
+    [job] VARCHAR(20) NULL,
     CHECK ([role]='Mechanic' OR [role]='Washer' OR [role]='ParkingAttendant')
-)
+);
 
 CREATE TABLE [dbo].[User]
 (
