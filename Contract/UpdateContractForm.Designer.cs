@@ -46,6 +46,9 @@
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lbUpdateContract = new System.Windows.Forms.Label();
+            this.panelRefContract = new System.Windows.Forms.Panel();
+            this.comboBoxRefContract = new System.Windows.Forms.ComboBox();
+            this.labelRefContract = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbContractType
@@ -222,34 +225,30 @@
             // 
             // panelRefContract
             // 
-            this.panelRefContract = new System.Windows.Forms.Panel();
-            this.panelRefContract.Location = new System.Drawing.Point(30, 330);
+            this.panelRefContract.Location = new System.Drawing.Point(440, 186);
             this.panelRefContract.Name = "panelRefContract";
-            this.panelRefContract.Size = new System.Drawing.Size(400, 60);
+            this.panelRefContract.Size = new System.Drawing.Size(153, 60);
             this.panelRefContract.TabIndex = 99;
             this.panelRefContract.Visible = false;
             // 
+            // comboBoxRefContract
+            // 
+            this.comboBoxRefContract.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRefContract.FormattingEnabled = true;
+            this.comboBoxRefContract.Location = new System.Drawing.Point(460, 204);
+            this.comboBoxRefContract.Name = "comboBoxRefContract";
+            this.comboBoxRefContract.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxRefContract.TabIndex = 98;
+            this.comboBoxRefContract.SelectedIndexChanged += new System.EventHandler(this.comboBoxRefContract_SelectedIndexChanged);
+            // 
             // labelRefContract
             // 
-            this.labelRefContract = new System.Windows.Forms.Label();
             this.labelRefContract.AutoSize = true;
             this.labelRefContract.Location = new System.Drawing.Point(10, 10);
             this.labelRefContract.Name = "labelRefContract";
             this.labelRefContract.Size = new System.Drawing.Size(160, 20);
+            this.labelRefContract.TabIndex = 0;
             this.labelRefContract.Text = "Select consignment contract:";
-            // 
-            // comboBoxRefContract
-            // 
-            this.comboBoxRefContract = new System.Windows.Forms.ComboBox();
-            this.comboBoxRefContract.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxRefContract.FormattingEnabled = true;
-            this.comboBoxRefContract.Location = new System.Drawing.Point(180, 7);
-            this.comboBoxRefContract.Name = "comboBoxRefContract";
-            this.comboBoxRefContract.Size = new System.Drawing.Size(200, 28);
-            this.comboBoxRefContract.TabIndex = 98;
-            this.comboBoxRefContract.SelectedIndexChanged += new System.EventHandler(this.comboBoxRefContract_SelectedIndexChanged);
-
-            this.panelRefContract.Controls.Add(this.comboBoxRefContract);
             // 
             // UpdateContractForm
             // 

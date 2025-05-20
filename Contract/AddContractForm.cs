@@ -10,7 +10,6 @@ namespace VehicleManagement.Contract
         {
             InitializeComponent();
         }
-
         private void AddContractForm_Load(object sender, EventArgs e)
         {
             cboContractType.Items.AddRange(new string[] { "Rent", "Consignment", "Lease" });
@@ -23,28 +22,33 @@ namespace VehicleManagement.Contract
                 MessageBox.Show("Cần ít nhất một hợp đồng ký gửi để tạo hợp đồng cho thuê (Lease).");
             }
 
+            // Gỡ sự kiện SelectedIndexChanged trước khi set SelectedIndex để tránh gọi không đúng lúc
+            cboContractType.SelectedIndexChanged -= cboContractType_SelectedIndexChanged;
             cboContractType.SelectedIndex = 0;
+            cboContractType.SelectedIndexChanged += cboContractType_SelectedIndexChanged;
 
-            LoadContractParties();
-            LoadVehicles(companyVehiclesOnly: true);
+            // Gọi thủ công sự kiện để load dữ liệu đúng với loại mặc định (Rent)
+            cboContractType_SelectedIndexChanged(cboContractType, EventArgs.Empty);
+
             LoadStaff();
 
             panelRefContract.Visible = false;
         }
 
-
+        // Cập nhật lại LoadContractParties để lấy dữ liệu đúng từng loại
         private void LoadContractParties()
         {
             string selectedType = cboContractType.SelectedItem?.ToString() ?? "";
-            MessageBox.Show("Selected contract type: " + selectedType); // Kiểm tra loại hợp đồng thực tế
 
             string query;
-            if (selectedType == "Consignment")
+            if (selectedType == "Consignment" || selectedType == "Lease")
             {
+                // Chủ xe cho Consignment và Lease
                 query = "SELECT OwnerId AS id, FirstName + ' ' + LastName AS fullName FROM Owner";
             }
             else
             {
+                // Khách thuê cho Rent
                 query = "SELECT Id, FirstName + ' ' + LastName AS fullName FROM Customer";
             }
 
@@ -53,8 +57,6 @@ namespace VehicleManagement.Contract
             cbContractParty.DisplayMember = "fullName";
             cbContractParty.ValueMember = "id";
         }
-
-
 
         private void LoadVehicles(bool companyVehiclesOnly)
         {
@@ -76,7 +78,7 @@ namespace VehicleManagement.Contract
             cboStaff.DisplayMember = "fullName";
             cboStaff.ValueMember = "id";
         }
-
+        // Cập nhật sự kiện cboContractType_SelectedIndexChanged để xử lý combo xe & hợp đồng đúng hơn
         private void cboContractType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboContractType.SelectedIndex < 0) return;
@@ -87,18 +89,24 @@ namespace VehicleManagement.Contract
             {
                 panelRefContract.Visible = false;
                 cboVehicleAddContract.Enabled = true;
+
                 LoadVehicles(companyVehiclesOnly: false);
                 LoadContractParties();
             }
             else if (selectedType == "Lease")
             {
                 panelRefContract.Visible = true;
+
                 LoadConsignmentContracts();
 
                 if (comboBoxRefContract.Items.Count == 0)
                 {
                     MessageBox.Show("Không có hợp đồng ký gửi nào để tạo hợp đồng cho thuê!");
+                    // Quay lại loại Rent
+                    cboContractType.SelectedIndexChanged -= cboContractType_SelectedIndexChanged;
                     cboContractType.SelectedIndex = 0;
+                    cboContractType.SelectedIndexChanged += cboContractType_SelectedIndexChanged;
+                    cboContractType_SelectedIndexChanged(cboContractType, EventArgs.Empty);
                     return;
                 }
 
@@ -109,19 +117,20 @@ namespace VehicleManagement.Contract
             {
                 panelRefContract.Visible = false;
                 cboVehicleAddContract.Enabled = true;
-                LoadVehicles(companyVehiclesOnly: true);
+
+                LoadVehicles(companyVehiclesOnly: false);
                 LoadContractParties();
             }
         }
 
-
+        // Sửa LoadConsignmentContracts để tự động chọn hợp đồng đầu tiên và trigger sự kiện comboBoxRefContract_SelectedIndexChanged
         private void LoadConsignmentContracts()
         {
             string query = @"
-                SELECT C.id, V.brand + ' ' + V.type AS vehicle
-                FROM Contract C
-                JOIN Vehicle V ON C.vehicleId = V.id
-                WHERE C.type = 'Consignment'";
+        SELECT C.id, V.brand + ' ' + V.type AS vehicle
+        FROM Contract C
+        JOIN Vehicle V ON C.vehicleId = V.id
+        WHERE C.type = 'Consignment'";
 
             DataTable dt = SqlHelper.GetData(query);
 
@@ -134,6 +143,10 @@ namespace VehicleManagement.Contract
             comboBoxRefContract.DataSource = dt;
             comboBoxRefContract.DisplayMember = "vehicle";
             comboBoxRefContract.ValueMember = "id";
+
+            // Tự chọn hợp đồng ký gửi đầu tiên và gọi event
+            comboBoxRefContract.SelectedIndex = 0;
+            comboBoxRefContract_SelectedIndexChanged(comboBoxRefContract, EventArgs.Empty);
         }
 
         private void cboVehicleAddContract_SelectedIndexChanged(object sender, EventArgs e)

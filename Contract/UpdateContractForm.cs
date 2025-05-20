@@ -47,19 +47,17 @@ namespace VehicleManagement.Contract
             cboCustomer.DisplayMember = "fullName";
             cboCustomer.ValueMember = "id";
         }
-
-
         private void LoadVehicles(bool companyVehiclesOnly)
         {
             string query = companyVehiclesOnly
-                ? "SELECT id, brand + ' - ' + type AS display FROM Vehicle WHERE owner = 'Company'"
+                ? "SELECT id, brand + ' - ' + type AS display FROM Vehicle WHERE OwnerId IS NULL"
                 : "SELECT id, brand + ' - ' + type AS display FROM Vehicle";
+
             DataTable dt = SqlHelper.GetTable(new System.Data.SqlClient.SqlCommand(query));
             cboVehicleUpdateContract.DataSource = dt;
             cboVehicleUpdateContract.DisplayMember = "display";
             cboVehicleUpdateContract.ValueMember = "id";
         }
-
         private void LoadStaff()
         {
             string query = "SELECT id, firstName + ' ' + lastName AS fullName FROM Staff";
@@ -163,27 +161,27 @@ namespace VehicleManagement.Contract
 
         private void comboBoxRefContract_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxRefContract.SelectedValue == null) return;
-
-            int refContractId = Convert.ToInt32(comboBoxRefContract.SelectedValue);
-            string query = $"SELECT vehicleId FROM Contract WHERE id = {refContractId}";
-            object result = SqlHelper.ExecuteScalar(query);
-
-            if (result != null && result != DBNull.Value)
+            if (comboBoxRefContract.SelectedValue is int refContractId)
             {
-                int vehicleId = Convert.ToInt32(result);
-                string vehicleDisplayQuery = $"SELECT brand + ' - ' + type FROM Vehicle WHERE id = {vehicleId}";
-                string vehicleDisplay = SqlHelper.ExecuteScalar(vehicleDisplayQuery)?.ToString() ?? "";
+                string query = $"SELECT vehicleId FROM Contract WHERE id = {refContractId}";
+                object result = SqlHelper.ExecuteScalar(query);
 
-                DataTable dt = new DataTable();
-                dt.Columns.Add("id", typeof(int));
-                dt.Columns.Add("display", typeof(string));
-                dt.Rows.Add(vehicleId, vehicleDisplay);
+                if (result != null && result != DBNull.Value)
+                {
+                    int vehicleId = Convert.ToInt32(result);
+                    string vehicleDisplayQuery = $"SELECT brand + ' - ' + type FROM Vehicle WHERE id = {vehicleId}";
+                    string vehicleDisplay = SqlHelper.ExecuteScalar(vehicleDisplayQuery)?.ToString() ?? "";
 
-                cboVehicleUpdateContract.DataSource = dt;
-                cboVehicleUpdateContract.DisplayMember = "display";
-                cboVehicleUpdateContract.ValueMember = "id";
-                cboVehicleUpdateContract.SelectedValue = vehicleId;
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("id", typeof(int));
+                    dt.Columns.Add("display", typeof(string));
+                    dt.Rows.Add(vehicleId, vehicleDisplay);
+
+                    cboVehicleUpdateContract.DataSource = dt;
+                    cboVehicleUpdateContract.DisplayMember = "display";
+                    cboVehicleUpdateContract.ValueMember = "id";
+                    cboVehicleUpdateContract.SelectedValue = vehicleId;
+                }
             }
         }
 
@@ -205,27 +203,36 @@ namespace VehicleManagement.Contract
                     {
                         MessageBox.Show("Vui lòng chọn hợp đồng ký gửi!");
                         return;
-                    }   
+                    }
 
-                    currentContract.RefContractId = Convert.ToInt32(comboBoxRefContract.SelectedValue);
+                    if (comboBoxRefContract.SelectedValue is int refContractId)
+                    {
+                        currentContract.RefContractId = refContractId;
 
-                    // Lấy VehicleId từ hợp đồng ký gửi
-                    string query = $"SELECT vehicleId FROM Contract WHERE id = {currentContract.RefContractId}";
-                    object vehicleIdObj = SqlHelper.ExecuteScalar(query);
+                        // Lấy VehicleId từ hợp đồng ký gửi
+                        string query = $"SELECT vehicleId FROM Contract WHERE id = {refContractId}";
+                        object vehicleIdObj = SqlHelper.ExecuteScalar(query);
 
-                    if (vehicleIdObj == null || vehicleIdObj == DBNull.Value)
+                        if (vehicleIdObj == null || vehicleIdObj == DBNull.Value)
+                        {
+                            MessageBox.Show("Hợp đồng ký gửi không hợp lệ!");
+                            return;
+                        }
+
+                        currentContract.VehicleId = Convert.ToInt32(vehicleIdObj);
+                    }
+                    else
                     {
                         MessageBox.Show("Hợp đồng ký gửi không hợp lệ!");
                         return;
                     }
-
-                    currentContract.VehicleId = Convert.ToInt32(vehicleIdObj);
                 }
                 else
                 {
                     currentContract.RefContractId = null;
                     currentContract.VehicleId = Convert.ToInt32(cboVehicleUpdateContract.SelectedValue);
                 }
+
 
                 bool result = currentContract.Update();
 
