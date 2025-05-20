@@ -63,6 +63,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contract\AddContractForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\AddContractForm.Designer.cs">
+      <DependentUpon>AddContractForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contract\Contract.cs" />
+    <Compile Include="Contract\ListContractForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\ListContractForm.Designer.cs">
+      <DependentUpon>ListContractForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contract\UpdateContractForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\UpdateContractForm.Designer.cs">
+      <DependentUpon>UpdateContractForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Job\EditJobForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +118,7 @@
     <Compile Include="Staff\ListStaffForm.Designer.cs">
       <DependentUpon>ListStaffForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\JobHelper.cs" />
     <Compile Include="Vehicle\EditVehicleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,7 +172,6 @@
     <Compile Include="MyDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query\Contract.cs" />
     <Compile Include="Job\Job.cs" />
     <Compile Include="Staff\Staff.cs" />
     <Compile Include="Vehicle\Vehicle.cs" />
@@ -170,6 +189,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Account\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract\AddContractForm.resx">
+      <DependentUpon>AddContractForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract\ListContractForm.resx">
+      <DependentUpon>ListContractForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract\UpdateContractForm.resx">
+      <DependentUpon>UpdateContractForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Job\EditJobForm.resx">
       <DependentUpon>EditJobForm.cs</DependentUpon>
@@ -230,6 +258,10 @@
   <ItemGroup>
     <Content Include="FakeData.sql" />
     <Content Include="Database.sql" />
+    <None Include="Resources\Luffy1.jpg" />
+    <None Include="Resources\Luffy.jpg" />
+    <None Include="Resources\270630319_646138706802110_9013562198811924589_n.jpg" />
+    <None Include="Resources\HCMUTE.jpg" />
     <Content Include="Resources\images.png" />
   </ItemGroup>
   <ItemGroup>

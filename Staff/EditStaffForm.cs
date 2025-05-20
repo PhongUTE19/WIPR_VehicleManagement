@@ -17,24 +17,32 @@ namespace VehicleManagement
         {
             FormHelper.CboSetup(cboGender, new string[] { "Male", "Female" });
             FormHelper.CboSetup(cboRole, new string[] { "Mechanic", "Washer", "ParkingAttendant" });
+            // Giả sử bạn đã setup cboJob tương tự
             //FormHelper.CboSetup(cboJob, command);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            string id = txtStaffId.Text.Trim();
+            // Chuyển id từ string sang int
+            if (!int.TryParse(txtStaffId.Text.Trim(), out int id))
+            {
+                MessageBox.Show("Invalid Staff ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string firstName = txtFirstName.Text.Trim();
             string lastName = txtLastName.Text.Trim();
             DateTime birthdate = dtpBirthdate.Value;
-            string gender = cboGender.SelectedValue.ToString();
+
+            string gender = cboGender.SelectedItem?.ToString() ?? "";
             string phone = txtPhone.Text.Trim();
             string address = txtAddress.Text.Trim();
             string email = txtEmail.Text.Trim();
             Image picture = pic.Image;
-            string role = cboRole.SelectedValue.ToString();
-            string job = cboJob.SelectedValue.ToString();
-            if (Helper.IsFieldEmpty(id) ||
-                Helper.IsFieldEmpty(firstName) ||
+            string role = cboRole.SelectedItem?.ToString() ?? "";
+            string job = cboJob.SelectedItem?.ToString() ?? "";
+
+            if (Helper.IsFieldEmpty(firstName) ||
                 Helper.IsFieldEmpty(lastName) ||
                 Helper.IsFieldEmpty(gender) ||
                 Helper.IsFieldEmpty(phone) ||
@@ -43,7 +51,10 @@ namespace VehicleManagement
                 Helper.IsFieldEmpty(picture) ||
                 Helper.IsFieldEmpty(role) ||
                 Helper.IsFieldEmpty(job))
+            {
+                MessageBox.Show("Please fill all required fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
 
             if (staff.Update(id, firstName, lastName, birthdate, gender, phone, address, email, picture, role, job))
                 MessageBox.Show(Const.Message.Staff.EDIT_SUCCESS, Const.Title.SUCCESS, MessageBoxButtons.OK);
@@ -64,13 +75,16 @@ namespace VehicleManagement
             txtFirstName.Text = dto.firstName;
             txtLastName.Text = dto.lastName;
             dtpBirthdate.Value = dto.birthdate;
-            cboGender.Text = dto.gender;
+
+            // Chọn item trong combo box dựa trên giá trị string
+            cboGender.SelectedItem = dto.gender;
+            cboRole.SelectedItem = dto.role;
+            cboJob.SelectedItem = dto.job;
+
             txtPhone.Text = dto.phone;
             txtAddress.Text = dto.address;
             txtEmail.Text = dto.email;
             pic.Image = dto.picture;
-            cboRole.Text = dto.role;
-            cboJob.Text = dto.job;
         }
     }
 

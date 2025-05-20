@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace VehicleManagement
@@ -13,6 +14,17 @@ namespace VehicleManagement
             int rowAffected = command.ExecuteNonQuery();
             db.CloseConnection();
             return rowAffected == 1;
+        }
+        public static bool Execute(string query, Dictionary<string, object> parameters)
+        {
+            using (SqlCommand command = new SqlCommand(query))
+            {
+                foreach (var param in parameters)
+                {
+                    command.Parameters.AddWithValue(param.Key, param.Value);
+                }
+                return Execute(command);
+            }
         }
 
         public static DataTable GetTable(SqlCommand command)
@@ -42,6 +54,31 @@ namespace VehicleManagement
                 FROM dbo.{tableName}");
             int count = GetCount(command);
             return count;
+        }
+
+        public static object ExecuteScalar(string query)
+        {
+            MyDB db = new MyDB();
+            SqlCommand command = new SqlCommand(query, db.getConnection);
+            db.OpenConnection();
+            object result = command.ExecuteScalar();
+            db.CloseConnection();
+            return result;
+        }
+        public static object ExecuteScalar(SqlCommand command)
+        {
+            MyDB db = new MyDB();
+            command.Connection = db.getConnection;
+            db.OpenConnection();
+            object result = command.ExecuteScalar();
+            db.CloseConnection();
+            return result;
+        }
+
+        public static DataTable GetData(string query)
+        {
+            SqlCommand command = new SqlCommand(query);
+            return GetTable(command);
         }
     }
 }

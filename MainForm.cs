@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using VehicleManagement.Contract;
 
 namespace VehicleManagement
 {
@@ -25,6 +26,12 @@ namespace VehicleManagement
         private void tsmiJob_Click(object sender, EventArgs e)
         {
             ListJobForm form = new ListJobForm();
+            form.Show();
+        }
+
+        private void contractToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListContractForm form = new ListContractForm();
             form.Show();
         }
     }

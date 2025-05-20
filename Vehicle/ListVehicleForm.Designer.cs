@@ -38,18 +38,17 @@ namespace VehicleManagement
             this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRefresh = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblTotal = new System.Windows.Forms.Label();
             this.tsmiPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(339, 41);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Location = new System.Drawing.Point(254, 33);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(100, 30);
+            this.btnSearch.Size = new System.Drawing.Size(75, 24);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -59,18 +58,19 @@ namespace VehicleManagement
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.ForeColor = System.Drawing.Color.White;
-            this.lblSearch.Location = new System.Drawing.Point(12, 48);
+            this.lblSearch.Location = new System.Drawing.Point(9, 39);
+            this.lblSearch.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(57, 17);
+            this.lblSearch.Size = new System.Drawing.Size(44, 13);
             this.lblSearch.TabIndex = 123;
             this.lblSearch.Text = "Search:";
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(75, 45);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSearch.Location = new System.Drawing.Point(56, 37);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(257, 22);
+            this.txtSearch.Size = new System.Drawing.Size(194, 20);
             this.txtSearch.TabIndex = 0;
             // 
             // dgv
@@ -78,11 +78,12 @@ namespace VehicleManagement
             this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(12, 84);
+            this.dgv.Location = new System.Drawing.Point(9, 68);
+            this.dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 24;
-            this.dgv.Size = new System.Drawing.Size(906, 385);
+            this.dgv.Size = new System.Drawing.Size(1180, 470);
             this.dgv.TabIndex = 128;
             // 
             // menuStrip1
@@ -96,61 +97,63 @@ namespace VehicleManagement
             this.tsmiPrint});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(930, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1198, 24);
             this.menuStrip1.TabIndex = 136;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // tsmiAdd
             // 
             this.tsmiAdd.Name = "tsmiAdd";
-            this.tsmiAdd.Size = new System.Drawing.Size(51, 24);
+            this.tsmiAdd.Size = new System.Drawing.Size(41, 20);
             this.tsmiAdd.Text = "Add";
             this.tsmiAdd.Click += new System.EventHandler(this.tsmiAdd_Click);
             // 
             // tsmiUpdate
             // 
             this.tsmiUpdate.Name = "tsmiUpdate";
-            this.tsmiUpdate.Size = new System.Drawing.Size(72, 24);
+            this.tsmiUpdate.Size = new System.Drawing.Size(57, 20);
             this.tsmiUpdate.Text = "Update";
             this.tsmiUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
             // 
             // tsmiDelete
             // 
             this.tsmiDelete.Name = "tsmiDelete";
-            this.tsmiDelete.Size = new System.Drawing.Size(67, 24);
+            this.tsmiDelete.Size = new System.Drawing.Size(52, 20);
             this.tsmiDelete.Text = "Delete";
             this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
             // 
             // tsmiRefresh
             // 
             this.tsmiRefresh.Name = "tsmiRefresh";
-            this.tsmiRefresh.Size = new System.Drawing.Size(72, 24);
+            this.tsmiRefresh.Size = new System.Drawing.Size(58, 20);
             this.tsmiRefresh.Text = "Refresh";
             this.tsmiRefresh.Click += new System.EventHandler(this.tsmiRefresh_Click);
+            // 
+            // tsmiPrint
+            // 
+            this.tsmiPrint.Name = "tsmiPrint";
+            this.tsmiPrint.Size = new System.Drawing.Size(44, 20);
+            this.tsmiPrint.Text = "Print";
+            this.tsmiPrint.Click += new System.EventHandler(this.tsmiPrint_Click);
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.ForeColor = System.Drawing.Color.White;
-            this.lblTotal.Location = new System.Drawing.Point(9, 481);
+            this.lblTotal.Location = new System.Drawing.Point(9, 551);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(44, 17);
+            this.lblTotal.Size = new System.Drawing.Size(34, 13);
             this.lblTotal.TabIndex = 137;
             this.lblTotal.Text = "Total:";
             // 
-            // tsmiPrint
-            // 
-            this.tsmiPrint.Name = "tsmiPrint";
-            this.tsmiPrint.Size = new System.Drawing.Size(53, 24);
-            this.tsmiPrint.Text = "Print";
-            this.tsmiPrint.Click += new System.EventHandler(this.tsmiPrint_Click);
-            // 
             // ListVehicleForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(65)))));
-            this.ClientSize = new System.Drawing.Size(930, 597);
+            this.ClientSize = new System.Drawing.Size(1198, 583);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.txtSearch);
@@ -158,7 +161,7 @@ namespace VehicleManagement
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ListVehicleForm";
             this.Text = "ListVehicleForm";
             this.Load += new System.EventHandler(this.ListVehicleForm_Load);

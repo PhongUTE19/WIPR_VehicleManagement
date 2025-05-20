@@ -50,10 +50,10 @@ namespace VehicleManagement
             // 
             this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(220)))), ((int)(((byte)(130)))));
             this.btnRegister.ForeColor = System.Drawing.Color.White;
-            this.btnRegister.Location = new System.Drawing.Point(240, 320);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRegister.Location = new System.Drawing.Point(191, 281);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(140, 50);
+            this.btnRegister.Size = new System.Drawing.Size(105, 41);
             this.btnRegister.TabIndex = 7;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = false;
@@ -64,10 +64,10 @@ namespace VehicleManagement
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(55)))), ((int)(((byte)(110)))));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(80, 320);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancel.Location = new System.Drawing.Point(63, 281);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(140, 50);
+            this.btnCancel.Size = new System.Drawing.Size(105, 41);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -76,20 +76,20 @@ namespace VehicleManagement
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(189, 117);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPassword.Location = new System.Drawing.Point(162, 103);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(225, 30);
+            this.txtPassword.Size = new System.Drawing.Size(170, 26);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(189, 78);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUsername.Location = new System.Drawing.Point(162, 62);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(225, 30);
+            this.txtUsername.Size = new System.Drawing.Size(170, 26);
             this.txtUsername.TabIndex = 0;
             // 
             // lblPassword
@@ -97,9 +97,10 @@ namespace VehicleManagement
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.ForeColor = System.Drawing.Color.White;
-            this.lblPassword.Location = new System.Drawing.Point(51, 121);
+            this.lblPassword.Location = new System.Drawing.Point(38, 107);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(104, 25);
+            this.lblPassword.Size = new System.Drawing.Size(82, 20);
             this.lblPassword.TabIndex = 100;
             this.lblPassword.Text = "Password:";
             // 
@@ -108,9 +109,10 @@ namespace VehicleManagement
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.Color.White;
-            this.lblUsername.Location = new System.Drawing.Point(51, 80);
+            this.lblUsername.Location = new System.Drawing.Point(38, 65);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(108, 25);
+            this.lblUsername.Size = new System.Drawing.Size(87, 20);
             this.lblUsername.TabIndex = 100;
             this.lblUsername.Text = "Username:";
             // 
@@ -119,19 +121,20 @@ namespace VehicleManagement
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(165, 20);
+            this.lblTitle.Location = new System.Drawing.Point(141, 21);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(115, 29);
+            this.lblTitle.Size = new System.Drawing.Size(91, 25);
             this.lblTitle.TabIndex = 100;
             this.lblTitle.Text = "Register";
             // 
             // txtRePassword
             // 
             this.txtRePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRePassword.Location = new System.Drawing.Point(189, 158);
-            this.txtRePassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtRePassword.Location = new System.Drawing.Point(162, 143);
+            this.txtRePassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtRePassword.Name = "txtRePassword";
-            this.txtRePassword.Size = new System.Drawing.Size(225, 30);
+            this.txtRePassword.Size = new System.Drawing.Size(170, 26);
             this.txtRePassword.TabIndex = 2;
             this.txtRePassword.UseSystemPasswordChar = true;
             // 
@@ -140,9 +143,10 @@ namespace VehicleManagement
             this.lblRePassword.AutoSize = true;
             this.lblRePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRePassword.ForeColor = System.Drawing.Color.White;
-            this.lblRePassword.Location = new System.Drawing.Point(51, 160);
+            this.lblRePassword.Location = new System.Drawing.Point(38, 146);
+            this.lblRePassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRePassword.Name = "lblRePassword";
-            this.lblRePassword.Size = new System.Drawing.Size(135, 25);
+            this.lblRePassword.Size = new System.Drawing.Size(108, 20);
             this.lblRePassword.TabIndex = 100;
             this.lblRePassword.Text = "Re-Password:";
             // 
@@ -151,19 +155,20 @@ namespace VehicleManagement
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.ForeColor = System.Drawing.Color.White;
-            this.lblEmail.Location = new System.Drawing.Point(51, 199);
+            this.lblEmail.Location = new System.Drawing.Point(38, 186);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(66, 25);
+            this.lblEmail.Size = new System.Drawing.Size(52, 20);
             this.lblEmail.TabIndex = 100;
             this.lblEmail.Text = "Email:";
             // 
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(189, 197);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEmail.Location = new System.Drawing.Point(162, 183);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(225, 30);
+            this.txtEmail.Size = new System.Drawing.Size(170, 26);
             this.txtEmail.TabIndex = 3;
             // 
             // lblCode
@@ -171,19 +176,20 @@ namespace VehicleManagement
             this.lblCode.AutoSize = true;
             this.lblCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCode.ForeColor = System.Drawing.Color.White;
-            this.lblCode.Location = new System.Drawing.Point(51, 240);
+            this.lblCode.Location = new System.Drawing.Point(36, 226);
+            this.lblCode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(66, 25);
+            this.lblCode.Size = new System.Drawing.Size(51, 20);
             this.lblCode.TabIndex = 100;
             this.lblCode.Text = "Code:";
             // 
             // txtCode
             // 
             this.txtCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCode.Location = new System.Drawing.Point(189, 238);
-            this.txtCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCode.Location = new System.Drawing.Point(162, 223);
+            this.txtCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(151, 30);
+            this.txtCode.Size = new System.Drawing.Size(114, 26);
             this.txtCode.TabIndex = 4;
             // 
             // btnSendCode
@@ -191,10 +197,10 @@ namespace VehicleManagement
             this.btnSendCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(140)))), ((int)(((byte)(250)))));
             this.btnSendCode.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSendCode.ForeColor = System.Drawing.Color.White;
-            this.btnSendCode.Location = new System.Drawing.Point(349, 238);
-            this.btnSendCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSendCode.Location = new System.Drawing.Point(280, 223);
+            this.btnSendCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSendCode.Name = "btnSendCode";
-            this.btnSendCode.Size = new System.Drawing.Size(69, 30);
+            this.btnSendCode.Size = new System.Drawing.Size(52, 24);
             this.btnSendCode.TabIndex = 5;
             this.btnSendCode.Text = "Send";
             this.btnSendCode.UseVisualStyleBackColor = false;
@@ -202,20 +208,19 @@ namespace VehicleManagement
             // 
             // prg
             // 
-            this.prg.Location = new System.Drawing.Point(170, 393);
-            this.prg.Margin = new System.Windows.Forms.Padding(4);
+            this.prg.Location = new System.Drawing.Point(42, 351);
             this.prg.Name = "prg";
-            this.prg.Size = new System.Drawing.Size(133, 28);
+            this.prg.Size = new System.Drawing.Size(290, 23);
             this.prg.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.prg.TabIndex = 101;
             this.prg.Visible = false;
             // 
             // RegisterForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(65)))));
-            this.ClientSize = new System.Drawing.Size(483, 498);
+            this.ClientSize = new System.Drawing.Size(362, 395);
             this.Controls.Add(this.prg);
             this.Controls.Add(this.btnSendCode);
             this.Controls.Add(this.txtCode);
@@ -231,7 +236,7 @@ namespace VehicleManagement
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.lblTitle);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "RegisterForm";
             this.Text = "RegisterForm";
             this.Load += new System.EventHandler(this.RegisterForm_Load);

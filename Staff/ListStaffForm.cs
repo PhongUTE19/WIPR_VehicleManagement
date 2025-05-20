@@ -7,7 +7,7 @@ namespace VehicleManagement
 {
     public partial class ListStaffForm : Form
     {
-        private Vehicle vehicle = new Vehicle();
+        private Staff staff = new Staff(); // Dùng Staff thay vì Vehicle
 
         public ListStaffForm()
         {
@@ -32,8 +32,7 @@ namespace VehicleManagement
             if (row == null || row.Index == -1)
                 return;
 
-            EditStaffForm form = new EditStaffForm();
-            string id = row.Cells["id"].Value.ToString();
+            int id = Convert.ToInt32(row.Cells["id"].Value); // chuyển sang int
             string firstName = row.Cells["firstName"].Value.ToString();
             string lastName = row.Cells["lastName"].Value.ToString();
             DateTime birthdate = (DateTime)row.Cells["birthdate"].Value;
@@ -43,12 +42,14 @@ namespace VehicleManagement
             string email = row.Cells["email"].Value.ToString();
             string role = row.Cells["role"].Value.ToString();
             string job = row.Cells["job"].Value.ToString();
-            Image picture;
+
+            Image picture = null;
             if (row.Cells["picture"].Value != DBNull.Value)
                 picture = Helper.byteArrayToImage((byte[])row.Cells["picture"].Value);
-            else
-                picture = null;
-            EditStaffDTO dto = new EditStaffDTO(id, firstName, lastName, birthdate, gender, phone, address, email, picture, role, job);
+
+            // Truyền id dạng string nếu DTO hiện tại yêu cầu
+            EditStaffDTO dto = new EditStaffDTO(id.ToString(), firstName, lastName, birthdate, gender, phone, address, email, picture, role, job);
+            EditStaffForm form = new EditStaffForm();
             form.SetData(dto);
             form.ShowDialog();
             SetRefresh();
@@ -60,11 +61,8 @@ namespace VehicleManagement
             if (row == null || row.Index == -1)
                 return;
 
-            string vehicleId = row.Cells["id"].Value.ToString();
-            if (Helper.IsFieldEmpty(vehicleId))
-                return;
-
-            if (vehicle.Delete(vehicleId))
+            int staffId = Convert.ToInt32(row.Cells["id"].Value);
+            if (staff.Delete(staffId)) // dùng Staff.Delete(int id)
                 MessageBox.Show(Const.Message.Staff.DELETE_SUCCESS, Const.Title.SUCCESS, MessageBoxButtons.OK);
             else
                 MessageBox.Show(Const.Message.Staff.DELETE_FAIL, Const.Title.FAIL, MessageBoxButtons.OK);
@@ -82,14 +80,48 @@ namespace VehicleManagement
             string search = txtSearch.Text.Trim();
             if (Helper.IsFieldEmpty(search))
                 return;
+
+            string query = @"
+                SELECT 
+                    C.id, 
+                    C.type, 
+                    CASE 
+                        WHEN C.type = 'Consignment' THEN O.FirstName + ' ' + O.LastName
+                        ELSE Cst.FirstName + ' ' + Cst.LastName
+                    END AS customer, 
+                    V.brand + ' ' + V.type AS vehicle, 
+                    S.firstName + ' ' + S.lastName AS staff, 
+                    C.startDate, 
+                    C.endDate, 
+                    C.price, 
+                    C.description
+                FROM Contract C
+                LEFT JOIN Owner O ON C.customerId = O.OwnerId
+                LEFT JOIN Customer Cst ON C.customerId = Cst.Id
+                JOIN Vehicle V ON C.vehicleId = V.id
+                JOIN Staff S ON C.staffId = S.id";
+
+            SqlCommand command = new SqlCommand(query);
+            command.Parameters.AddWithValue("@search", "%" + search + "%");
+
+            FormHelper.DgvSetup(dgv, command);
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void SetRefresh()
         {
-            SqlCommand command = new SqlCommand(@"
-                SELECT * FROM [Staff]");
+            string query = @"
+                SELECT s.Id, s.FirstName, s.LastName, s.BirthDate, s.Gender, s.Phone,
+                       s.Address, s.Email, s.Role, s.Picture,
+                       j.Name AS job
+                FROM Staff s
+                LEFT JOIN Job j ON s.JobId = j.Id";
+
+            SqlCommand command = new SqlCommand(query);
             FormHelper.DgvSetup(dgv, command);
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             txtSearch.Text = "";
         }
+
     }
 }

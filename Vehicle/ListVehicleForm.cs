@@ -43,17 +43,25 @@ namespace VehicleManagement
 
             EditVehicleForm form = new EditVehicleForm();
             string id = row.Cells["id"].Value.ToString();
-            string owner = row.Cells["owner"].Value.ToString();
+
+            int ownerId = 0;
+            if (row.Cells["ownerId"].Value != DBNull.Value)
+                ownerId = Convert.ToInt32(row.Cells["ownerId"].Value);
+
+            string ownerName = row.Cells["OwnerName"].Value.ToString();
             string type = row.Cells["type"].Value.ToString();
             string brand = row.Cells["brand"].Value.ToString();
             DateTime checkIn = (DateTime)row.Cells["checkIn"].Value;
             string subscription = row.Cells["subscription"].Value.ToString();
+
             Image picture;
             if (row.Cells["picture"].Value != DBNull.Value)
                 picture = Helper.byteArrayToImage((byte[])row.Cells["picture"].Value);
             else
                 picture = null;
-            EditVehicleDTO dto = new EditVehicleDTO(id, owner, type, brand, checkIn, subscription, picture);
+
+            // Gọi constructor đúng với 8 tham số
+            EditVehicleDTO dto = new EditVehicleDTO(id, ownerId, ownerName, type, brand, checkIn, subscription, picture);
             form.SetData(dto);
             form.ShowDialog();
             SetRefresh();
@@ -65,9 +73,11 @@ namespace VehicleManagement
             if (row == null || row.Index == -1)
                 return;
 
-            string vehicleId = row.Cells["id"].Value.ToString();
-            if (Helper.IsFieldEmpty(vehicleId))
+            string vehicleIdStr = row.Cells["id"].Value.ToString();
+            if (Helper.IsFieldEmpty(vehicleIdStr))
                 return;
+
+            int vehicleId = int.Parse(vehicleIdStr); // hoặc int.TryParse để an toàn
 
             if (vehicle.Delete(vehicleId))
                 MessageBox.Show(Const.Message.Vehicle.DELETE_SUCCESS, Const.Title.SUCCESS, MessageBoxButtons.OK);
@@ -89,19 +99,34 @@ namespace VehicleManagement
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string search = txtSearch.Text.Trim();
-            if (Helper.IsFieldEmpty(search))
-                return;
+            SetRefresh();
         }
 
         private void SetRefresh()
         {
+            string search = txtSearch.Text.Trim();
+
             SqlCommand command = new SqlCommand(@"
-                SELECT * FROM [Vehicle]");
-            
+                SELECT v.*, u.firstName, u.lastName
+                FROM Vehicle v
+                LEFT JOIN [Owner] u ON v.ownerId = u.OwnerId
+                WHERE 
+                    CAST(v.id AS NVARCHAR) LIKE @search OR
+                    u.firstName LIKE @search OR
+                    u.lastName LIKE @search OR
+                    v.type LIKE @search OR
+                    v.brand LIKE @search OR
+                    v.subscription LIKE @search");
+
+            // Nếu search trống thì truyền '%' để lấy toàn bộ
+            if (string.IsNullOrEmpty(search))
+                command.Parameters.AddWithValue("@search", "%");
+            else
+                command.Parameters.AddWithValue("@search", "%" + search + "%");
+
             SetList(command);
-            txtSearch.Text = "";
         }
+
 
         private void SetList(SqlCommand command)
         {
@@ -113,6 +138,9 @@ namespace VehicleManagement
             NewCol(table, "HourDiff");
             NewCol(table, "Status");
             NewCol(table, "TotalFee");
+            // Tạo cột OwnerName để hiển thị họ tên chủ xe
+            if (!table.Columns.Contains("OwnerName"))
+                table.Columns.Add("OwnerName", typeof(string));
 
             foreach (DataRow row in table.Rows)
             {
@@ -153,9 +181,10 @@ namespace VehicleManagement
                 row["HourDiff"] = hourDiff.ToString();
                 row["Status"] = status;
                 row["TotalFee"] = totalFee.ToString();
+                row["OwnerName"] = $"{row["firstName"]} {row["lastName"]}";
             }
             FormHelper.DgvSetup(dgv, table);
-
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             int countBike = table.Select("type = 'Bike'").Length;
             int countMotorbike = table.Select("type = 'Motorbike'").Length;
             int countCar = table.Select("type = 'Car'").Length;

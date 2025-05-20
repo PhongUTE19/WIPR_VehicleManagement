@@ -11,19 +11,37 @@ namespace VehicleManagement
         public AddStaffForm()
         {
             InitializeComponent();
+            cboRole.SelectedIndexChanged += cboRole_SelectedIndexChanged;
         }
 
         private void AddStaffForm_Load(object sender, EventArgs e)
         {
-            FormHelper.CboSetup(cboGender, new string[] { "Male", "Female" });
+            FormHelper.CboSetup(cboGender, new string[] { "Male", "Female", "Other" });
             FormHelper.CboSetup(cboRole, new string[] { "Mechanic", "Washer", "ParkingAttendant" });
-            //FormHelper.CboSetup(cboJob, command);
+
+            // Load danh sách Job từ DB vào cboJob
+            var jobs = JobHelper.GetJobs(); // giả sử trả về DataTable
+
+            cboJob.DataSource = null;
+            cboJob.DisplayMember = "Name";
+            cboJob.ValueMember = "Id";
+
+            if (jobs != null && jobs.Rows.Count > 0)
+            {
+                cboJob.DataSource = jobs;          // ✅ Gán DataSource trước
+                cboJob.SelectedIndex = 0;          // ✅ Sau đó mới chọn dòng đầu tiên
+            }
+            else
+            {
+                MessageBox.Show("No jobs found. Please add jobs first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             SetRefresh();
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            string id = txtStaffId.Text.Trim();
+            // Bỏ lấy id
             string firstName = txtFirstName.Text.Trim();
             string lastName = txtLastName.Text.Trim();
             DateTime birthdate = dtpBirthdate.Value;
@@ -33,20 +51,21 @@ namespace VehicleManagement
             string email = txtEmail.Text.Trim();
             Image picture = pic.Image;
             string role = cboRole.SelectedValue.ToString();
-            string job = cboJob.SelectedValue.ToString();
-            if (Helper.IsFieldEmpty(id) ||
-                Helper.IsFieldEmpty(firstName) ||
+
+            // jobId lấy từ SelectedValue của cboJob
+            int jobId = (int)cboJob.SelectedValue;
+
+            if (Helper.IsFieldEmpty(firstName) ||
                 Helper.IsFieldEmpty(lastName) ||
                 Helper.IsFieldEmpty(gender) ||
                 Helper.IsFieldEmpty(phone) ||
                 Helper.IsFieldEmpty(address) ||
                 Helper.IsFieldEmpty(email) ||
-                Helper.IsFieldEmpty(picture) ||
-                Helper.IsFieldEmpty(role) ||
-                Helper.IsFieldEmpty(job))
+                picture == null ||  // Kiểm tra hình ảnh khác chút, không dùng IsFieldEmpty
+                Helper.IsFieldEmpty(role))
                 return;
 
-            if (staff.Insert(id, firstName, lastName, birthdate, gender, phone, address, email, picture, role, job))
+            if (staff.Insert(firstName, lastName, birthdate, gender, phone, address, email, picture, role, jobId))
                 MessageBox.Show(Const.Message.Staff.ADD_SUCCESS, Const.Title.SUCCESS, MessageBoxButtons.OK);
             else
                 MessageBox.Show(Const.Message.Staff.ADD_FAIL, Const.Title.FAIL, MessageBoxButtons.OK);
@@ -61,7 +80,6 @@ namespace VehicleManagement
 
         private void SetRefresh()
         {
-            txtStaffId.Text = "";
             txtFirstName.Text = "";
             txtLastName.Text = "";
             dtpBirthdate.Value = DateTime.Now;
@@ -73,5 +91,22 @@ namespace VehicleManagement
             cboRole.SelectedIndex = 0;
             cboJob.SelectedIndex = 0;
         }
+        private void cboRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboRole.SelectedItem != null)
+            {
+                string selectedRole = cboRole.SelectedItem.ToString();
+                var jobs = JobHelper.GetJobsByRole(selectedRole);
+                cboJob.DataSource = jobs;
+                cboJob.DisplayMember = "Name";
+                cboJob.ValueMember = "Id";
+
+                if (jobs.Rows.Count > 0)
+                    cboJob.SelectedIndex = 0;
+                else
+                    cboJob.Text = "";  // Clear nếu không có job phù hợp
+            }
+        }
+
     }
 }

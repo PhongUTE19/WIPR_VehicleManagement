@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -22,13 +23,32 @@ namespace VehicleManagement
         {
             FormHelper.CboSetup(cboType, new string[] { "Bike", "Motorbike", "Car" });
             FormHelper.CboSetup(cboSubscription, new string[] { "Hour", "Day", "Week", "Month" });
+
+            LoadOwners();
+
             SetRefresh();
+        }
+        private void LoadOwners()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SELECT OwnerId, CONCAT(FirstName, ' ', LastName) AS fullName FROM Owner");
+                DataTable dt = SqlHelper.GetTable(cmd);
+                cboOwner.DataSource = dt;
+                cboOwner.DisplayMember = "fullName";
+                cboOwner.ValueMember = "OwnerId";
+                if (dt.Rows.Count > 0)
+                    cboOwner.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load owners: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            string id = txtVehicleId.Text.Trim();
-            string owner = txtOwner.Text.Trim();
+            int ownerId = (int)cboOwner.SelectedValue;  // Lấy ownerId kiểu int
             string type = cboType.SelectedValue.ToString();
             string brand = txtBrand.Text.Trim();
             DateTime checkIn = dtpCheckIn.Value;
@@ -36,8 +56,8 @@ namespace VehicleManagement
             Image picture = pic.Image;
 
             SqlCommand command = new SqlCommand(@"
-                SELECT COUNT(*) FROM [Vehicle]
-                WHERE type = @type");
+        SELECT COUNT(*) FROM [Vehicle]
+        WHERE type = @type");
             command.Parameters.AddWithValue("@type", type);
             int count = SqlHelper.GetCount(command);
             int zone =
@@ -50,19 +70,22 @@ namespace VehicleManagement
                 MessageBox.Show($"{type} zone is full.", Const.Title.FAIL, MessageBoxButtons.OK);
                 return;
             }
-                
-            if (Helper.IsFieldEmpty(id) ||
-                Helper.IsFieldEmpty(owner) ||
+
+            if (ownerId == 0 ||   // Kiểm tra ownerId hợp lệ
                 Helper.IsFieldEmpty(type) ||
                 Helper.IsFieldEmpty(brand) ||
                 Helper.IsFieldEmpty(picture))
                 return;
 
-            if (vehicle.Insert(id, owner, type, brand, checkIn, subscription, picture))
-                MessageBox.Show(Const.Message.Vehicle.ADD_SUCCESS, Const.Title.SUCCESS, MessageBoxButtons.OK);
+            int? newVehicleId = vehicle.Insert(ownerId, type, brand, checkIn, subscription, picture);
+            if (newVehicleId != null)
+            {
+                MessageBox.Show($"Thêm thành công. Vehicle ID: {newVehicleId}", Const.Title.SUCCESS, MessageBoxButtons.OK);
+            }
             else
+            {
                 MessageBox.Show(Const.Message.Vehicle.ADD_FAIL, Const.Title.FAIL, MessageBoxButtons.OK);
-
+            }
             Close();
         }
 
@@ -73,12 +96,14 @@ namespace VehicleManagement
 
         private void SetRefresh()
         {
-            txtVehicleId.Text = "";
-            txtOwner.Text = "";
+            // Nếu bạn vẫn giữ txtOwner thì có thể ẩn hoặc xóa dòng sau
+            // txtOwner.Text = "";
             cboType.SelectedIndex = 0;
             txtBrand.Text = "";
             dtpCheckIn.Value = DateTime.Now;
             pic.Image = null;
+            if (cboOwner.Items.Count > 0)
+                cboOwner.SelectedIndex = 0;
         }
     }
 }

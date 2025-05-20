@@ -69,6 +69,17 @@ namespace VehicleManagement
             string search = txtSearch.Text.Trim();
             if (Helper.IsFieldEmpty(search))
                 return;
+
+            SqlCommand command = new SqlCommand(@"
+            SELECT * FROM [Job]
+            WHERE 
+                CAST(id AS NVARCHAR) LIKE @search OR
+                name LIKE @search OR
+                description LIKE @search");
+            command.Parameters.AddWithValue("@search", "%" + search + "%");
+
+            FormHelper.DgvSetup(dgv, command);
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void SetRefresh()
@@ -76,6 +87,7 @@ namespace VehicleManagement
             SqlCommand command = new SqlCommand(@"
                 SELECT * FROM [Job]");
             FormHelper.DgvSetup(dgv, command);
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             txtSearch.Text = "";
         }
     }

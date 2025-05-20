@@ -39,11 +39,13 @@ namespace VehicleManagement
             // 
             // btnVerify
             // 
-            this.btnVerify.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(220)))), ((int)(((byte)(130)))));
-            this.btnVerify.ForeColor = System.Drawing.Color.White;
-            this.btnVerify.Location = new System.Drawing.Point(49, 180);
+            this.btnVerify.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnVerify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerify.ForeColor = System.Drawing.Color.Chocolate;
+            this.btnVerify.Location = new System.Drawing.Point(267, 160);
+            this.btnVerify.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnVerify.Name = "btnVerify";
-            this.btnVerify.Size = new System.Drawing.Size(140, 50);
+            this.btnVerify.Size = new System.Drawing.Size(105, 41);
             this.btnVerify.TabIndex = 3;
             this.btnVerify.Text = "Verify";
             this.btnVerify.UseVisualStyleBackColor = false;
@@ -53,19 +55,21 @@ namespace VehicleManagement
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(181, 27);
+            this.lblTitle.ForeColor = System.Drawing.Color.IndianRed;
+            this.lblTitle.Location = new System.Drawing.Point(102, 19);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(211, 29);
+            this.lblTitle.Size = new System.Drawing.Size(167, 25);
             this.lblTitle.TabIndex = 106;
             this.lblTitle.Text = "Reset Password";
             // 
             // txtRePassword
             // 
             this.txtRePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRePassword.Location = new System.Drawing.Point(184, 131);
+            this.txtRePassword.Location = new System.Drawing.Point(151, 118);
+            this.txtRePassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtRePassword.Name = "txtRePassword";
-            this.txtRePassword.Size = new System.Drawing.Size(225, 30);
+            this.txtRePassword.Size = new System.Drawing.Size(170, 26);
             this.txtRePassword.TabIndex = 1;
             this.txtRePassword.UseSystemPasswordChar = true;
             // 
@@ -73,19 +77,21 @@ namespace VehicleManagement
             // 
             this.lblRePassword.AutoSize = true;
             this.lblRePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRePassword.ForeColor = System.Drawing.Color.White;
-            this.lblRePassword.Location = new System.Drawing.Point(44, 134);
+            this.lblRePassword.ForeColor = System.Drawing.Color.IndianRed;
+            this.lblRePassword.Location = new System.Drawing.Point(33, 125);
+            this.lblRePassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRePassword.Name = "lblRePassword";
-            this.lblRePassword.Size = new System.Drawing.Size(135, 25);
+            this.lblRePassword.Size = new System.Drawing.Size(108, 20);
             this.lblRePassword.TabIndex = 109;
             this.lblRePassword.Text = "Re-Password:";
             // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(184, 91);
+            this.txtPassword.Location = new System.Drawing.Point(151, 70);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(225, 30);
+            this.txtPassword.Size = new System.Drawing.Size(170, 26);
             this.txtPassword.TabIndex = 0;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -93,25 +99,27 @@ namespace VehicleManagement
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.ForeColor = System.Drawing.Color.White;
-            this.lblPassword.Location = new System.Drawing.Point(44, 94);
+            this.lblPassword.ForeColor = System.Drawing.Color.IndianRed;
+            this.lblPassword.Location = new System.Drawing.Point(33, 76);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(104, 25);
+            this.lblPassword.Size = new System.Drawing.Size(82, 20);
             this.lblPassword.TabIndex = 110;
             this.lblPassword.Text = "Password:";
             // 
             // ResetPasswordForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(65)))));
-            this.ClientSize = new System.Drawing.Size(511, 275);
+            this.BackColor = System.Drawing.Color.Wheat;
+            this.ClientSize = new System.Drawing.Size(383, 223);
             this.Controls.Add(this.txtRePassword);
             this.Controls.Add(this.lblRePassword);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.btnVerify);
             this.Controls.Add(this.lblTitle);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ResetPasswordForm";
             this.Text = "ResetPasswordForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ResetPasswordForm_FormClosing);
